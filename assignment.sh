@@ -17,7 +17,8 @@ UPTIME=$(uptime -p)
 # exit statement ensures only the first CPU entry is captured.
 CPU=$(lshw -c processor | awk -F ': ' '/product/ {print $2; exit}')
 
-CPU_SPEED=$(lshw -c processor | awk -F ': ' '/capacity/ {print $2}')
+CPU_SPEED=$(lshw -c processor | awk -F ': ' '/capacity/ {print $2; exit}')
+
 RAM=$(free -h | awk '/Mem:/ {print $2}')
 # tail -n +2 command is used to skip the header line
 DISKS=$(lsblk -o NAME,MODEL,SIZE | tail -n +2)
